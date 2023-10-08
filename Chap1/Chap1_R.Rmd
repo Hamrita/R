@@ -11,12 +11,16 @@ institute: "Université de Sousse - Tunisie"
 fontsize: 8pt
 output: 
   beamer_presentation: 
+    keep_tex: true
     toc: yes
     colortheme: dolphin
     fonttheme: professionalfonts
     theme: Frankfurt
     slide_level: 2
 urlcolor: blue
+header-includes:
+   - \setbeamertemplate{navigation symbols}{}
+   - \setbeamertemplate{footline}[page number]
 ---
 
 ```{r setup, include=FALSE}

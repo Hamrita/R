@@ -1,0 +1,159 @@
+---
+title: |
+   | Programmation sous R
+   | Chapitre 2: Graphiques - Statistiques
+author: |
+   | Mohamed Essaied Hamrita
+   | [mhamrita@gmail.com](mailto:mhamrita@gmail.com)
+   | [github.com/Hamrita](https:github.com/Hamrita)
+date: "2023-2024"
+institute: "Université de Sousse - Tunisie"
+fontsize: 8pt
+output: 
+  beamer_presentation: 
+    toc: yes
+    keep_tex: true
+    colortheme: dolphin
+    fonttheme: professionalfonts
+    theme: Frankfurt
+    slide_level: 2
+urlcolor: blue
+header-includes:
+   - \setbeamertemplate{navigation symbols}{}
+   - \setbeamertemplate{footline}[page number]
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(comment=NA, message = F, warning = F, background ="cornsilk2", size='footnotesize' )
+```
+
+# Graphiques
+
+Cette section explique comment créer des types de graphique de base. La commande la plus simple à utiliser pour représenter graphiquement un ensemble de points est la commande `plot(x,y)`. La commande `plot` a plusieurs arguments. Par défaut, cette commande trace l'ensemble des points en points.
+
+```{r, fig.height=5}
+x=c(-2,1,5,-4,0,3); plot(x)
+```
+
+---
+
+Pour tracer une ligne, on doit ajouter l'argument `type="l"`.
+
+```{r, fig.height=6}
+plot(x, type="l")
+```
+
+---
+
+Bien sûr, le logiciel `R` présente plusieurs arguments pour la fonction plot, tels que le paramétrage des coleurs, largeur du trait de la courbe, les étiquettes (labels) des axes, etc \ldots 
+
+```{r, ,fig.height=5, fig.align='center'}
+plot(x,type="l", col="red",lwd=2, xlab="axes des abscisses", 
+ylab="axes des ordonnées", main="Mon premier graphique", 
+ylim=c(-6,6))
+points(x,col=1:6,pch=1:6,lwd=3)
+legend("topleft", "Courbe", text.col=2, lty=1)
+```
+
+---
+
+La représentation des courbes des fonctions peut être faite de deux manières; soit par la fonction `plot`, soit par la fonction `curve`.
+
+```{r, echo=-2, fig.height=5, fig.align='center'}
+xx=seq(-2*pi, 2*pi, len=100); yy= sin(xx)
+par(mar=c(5,4,1.5,2))
+plot(xx,yy,type="l",xlab="x", ylab=expression(sin(x)), 
+     col=2, lwd=3)
+curve(cos, -2*pi, 2*pi, col=4, lwd=3, lty=2, add=T)
+legend("bottomleft",c("sin", "cos"), lty=c(1,2), col=c(2,4), 
+       lwd=3,bty="n")
+```
+
+## Les symboles graphiques
+
+La figure ci-dessous montre les différents types de points:
+
+```{r,fig.height=4, fig.width=5, fig.height=6, fig.align='center',echo=F}
+
+  par(font=2, mar=c(0.5,0,0,0))
+  y=rev(c(rep(1,6),rep(2,5), rep(3,5), rep(4,5), rep(5,5)))
+  x=c(rep(1:5,5),6)
+  plot(x, y, pch = 0:25, cex=1.5, ylim=c(1,5.5), xlim=c(1,6.5), 
+       axes=FALSE, xlab="", ylab="", bg="blue")
+  text(x, y, labels=0:25, pos=3)
+  
+
+```
+
+
+## Les types des traits
+
+Le type de traits peut être spécifier en utilisant le paramètre graphique `lty`. Les types de traits disponibles dans R sont :
+
+```{r,fig.height=4, fig.width=5, echo=FALSE, fig.align='center'}
+par(font=2, mar=c(0,0,0,0))
+  plot(1, pch="", ylim=c(0,6), xlim=c(0,0.7),  axes=FALSE,xlab="", ylab="")
+  for(i in 0:6) lines(c(0.3,0.7), c(i,i), lty=i, lwd=3)
+  text(rep(0.1,6), 0:6, labels=c("0.'blank'", "1.'solid'", "2.'dashed'", "3.'dotted'",
+                                 "4.'dotdash'", "5.'longdash'", "6.'twodash'"))
+```
+
+
+## Ajouter un texte
+
+Pour ajouter du texte à un graphique avec le logiciel statistique R, les fonctions `text()` et `mtext()` peuvent être utilisées.
+
+```{r,eval=F}
+text(x,y,label)
+```
+x et y sont les coordonnées du texte à ajouter et label est le texte à écrire sur le graphique.
+```{r, echo=-1, fig.height=2.25, fig.width=5, fig.align='center'}
+par(mar=c(4,4,.1,1))
+x1=cos(seq(0,pi,len=60)); plot(x1,type="n", xlab="", ylab="")
+text(12, x1[12], "Bonjour", col=2); text(40, x1[40], "Hello", col=4)
+text(50,0.5, expression(hat(beta)))
+```
+
+## ggplot
+
+Une autre manière pour faire la représentation graphique est l'utilisation de la fonction `ggplot` du package `ggplot2` qui doit être installer par la commande `install.package("ggplot2")`. Après l'installation, on fait appel au package à l'aide `library("ggplot2")`.
+
+```{r, eval=FALSE}
+install.packages("ggplot2")
+library("ggplot2")
+```
+
+\pause
+La fonction `ggplot` prend comme un premier argument une `data.frame` qui contient les données à représenter. Un deuxième argument `aes(x,y)` spécifie les valeurs des abscisses et les ordonnées.
+
+---
+
+```{r, echo=-1,fig.align='center', out.height="70%"}
+library(ggplot2)
+x=seq(-pi, pi, len=100)
+y=sin(x); dd=data.frame(x,y)
+p=ggplot(dd,aes(x,y))+geom_line()
+p
+```
+
+---
+
+Les paramètres de la largeur et la couleur de la courbe doivent être spécifiés dans `geom_line()`. L'ajout d'un titre se fait par l'ajout de `ggtitle()`.
+
+```{r,fig.align='center', out.height="70%"}
+p=p+geom_line(linewidth=1.2, colour="blue")+ ggtitle("Titre")
+p
+```
+
+---
+
+Si on veut centrer le titre ou le mettre en couleur ou encore le mettre en gras, on ajoutera `theme(plot.title = element_text(hjust = 0.5, size=20, color="darkred"))`.
+
+
+```{r,fig.align='center', out.height="67%"}
+p=p+theme(plot.title = element_text(hjust = 0.5, size=20,
+          color="darkred"))+labs(x="",y="")
+p
+```
+
+# Statistiques
