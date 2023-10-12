@@ -136,6 +136,13 @@ Chapitre 2: Graphiques - Statistiques}
 \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
 \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+\usepackage{caption}
+% Make caption package work with longtable
+\makeatletter
+\def\fnum@table{\tablename~\thetable}
+\makeatother
 \usepackage{graphicx}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
@@ -340,7 +347,74 @@ en gras, on ajoutera
 \begin{center}\includegraphics[height=0.67\textheight]{Chap2_R_files/figure-beamer/unnamed-chunk-12-1} \end{center}
 \end{frame}
 
-\hypertarget{statistiques}{%
-\section{Statistiques}\label{statistiques}}
+\hypertarget{statistique-univariuxe9e}{%
+\section{Statistique univariée}\label{statistique-univariuxe9e}}
+
+\begin{frame}{Statistique univariée}
+On entend par \(\color{red}{\textbf{statistique univariée}}\) l'étude
+d'une seule variable, que celle-ci soit
+\(\color{blue}{\textbf{qualitative}}\) ou
+\(\color{blue}{\textbf{quantitative}}\). La statistique univariée fait
+partie de la statistique descriptive.
+
+\pause
+
+Une \textbf{variable qualitative} (aussi appelée variable catégorique)
+réfère à une caractéristique qui n'est pas quantifiable. Une variable
+catégorique peut être nominale ou ordinale. \pause
+
+\begin{itemize}
+\item
+  Une variable \(\color{violet}{\textbf{nominale}}\) décrit un nom, une
+  étiquette ou une catégorie sans ordre naturel. Le sexe est un exemple.
+\item
+  Une variable \(\color{violet}{\textbf{ordinale}}\) est une variable
+  dont les valeurs sont définies par une relation d'ordre entre les
+  catégories possibles. La variable mention est une variable ordinale
+  parce que la catégorie ``très bien'' est meilleure que la catégorie
+  ``bien'' qui est meilleure de la catégorie ``passable''.\pause
+\end{itemize}
+
+Une \textbf{variable quantative} est une caractéristique quantifiable
+dont les valeurs sont des nombres. Les variables numériques peuvent être
+\(\color{blue}{\textbf{continues}}\) ou
+\(\color{blue}{\textbf{discrètes}}\).\pause
+
+\begin{itemize}
+\item
+  Variables continues: On dit qu'une variable est
+  \(\color{violet}{\textbf{continue}}\) si elle prend un nombre infini
+  de valeurs réelles possibles à l'intérieur d'un intervalle donné.
+  Prenons la taille d'un élève par exemple.\pause
+\item
+  Variables discrètes: Contrairement à une variable continue, une
+  variable \(\color{violet}{\textbf{discrète}}\) ne peut prendre qu'un
+  nombre fini de valeurs réelles possibles à l'intérieur d'un intervalle
+  donné. Le nombre d'enfants dans un ménage est un exemple.
+\end{itemize}
+\end{frame}
+
+\hypertarget{variable-qualitative}{%
+\section{Variable qualitative}\label{variable-qualitative}}
+
+\begin{frame}{Variable qualitative}
+Une variable qualitative peut être représentée, soit par un diagramme à
+barres, soit par un diagramme en secteurs.\pause
+
+\(\color{red}{\textbf{Exemple:}}\)
+
+En 2005, les recettes du budget de l'Etat se présentaient de la façon
+suivante (en milliards) :
+
+\begin{longtable}[]{@{}lllllll@{}}
+\toprule
+\endhead
+Source & TVA & IR & IS & TPP & AI & RNF \\
+RF & 348 & 163 & 71 & 54 & 161 & 41 \\
+\bottomrule
+\end{longtable}
+
+\vspace*{4cm}
+\end{frame}
 
 \end{document}

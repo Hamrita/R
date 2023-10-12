@@ -25,6 +25,21 @@ header-includes:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(comment=NA, message = F, warning = F, background ="cornsilk2", size='footnotesize' )
+
+col <- function(x,color) {
+  
+  outputFormat <- knitr::opts_knit$get("rmarkdown.pandoc.to")
+  
+  if(outputFormat == 'latex') {
+    ret <- paste("\\textcolor{",color,"}{",x,"}",sep="")
+  } else if(outputFormat == 'html') {
+    ret <- paste("<font color='",color,"'>",x,"</font>",sep="")
+  } else {
+    ret <- x
+  }
+
+  return(ret)
+}
 ```
 
 # Graphiques
@@ -154,6 +169,53 @@ Si on veut centrer le titre ou le mettre en couleur ou encore le mettre en gras,
 p=p+theme(plot.title = element_text(hjust = 0.5, size=20,
           color="darkred"))+labs(x="",y="")
 p
+
 ```
 
-# Statistiques
+# Statistique univariée
+
+On entend par $\color{red}{\textbf{statistique univariée}}$ l'étude d'une seule variable, que celle-ci soit $\color{blue}{\textbf{qualitative}}$ ou $\color{blue}{\textbf{quantitative}}$. La statistique univariée fait partie de la statistique descriptive.
+
+\pause
+
+Une __variable qualitative__ (aussi appelée variable catégorique) réfère à une caractéristique qui n'est pas quantifiable. Une variable catégorique peut être nominale ou ordinale.
+\pause
+
+- Une variable $\color{violet}{\textbf{nominale}}$ décrit un nom, une étiquette ou une catégorie sans ordre naturel. Le sexe est un exemple. 
+
+- Une variable $\color{violet}{\textbf{ordinale}}$ est une variable dont les valeurs sont définies par une relation d'ordre entre les catégories possibles. La variable mention est une variable ordinale parce que la catégorie "très bien" est meilleure que la catégorie "bien" qui est meilleure de la catégorie "passable".\pause
+
+Une __variable quantative__ est une caractéristique quantifiable dont les valeurs sont des nombres. Les variables numériques peuvent être $\color{blue}{\textbf{continues}}$ ou $\color{blue}{\textbf{discrètes}}$.\pause
+
+- Variables continues: On dit qu'une variable est $\color{violet}{\textbf{continue}}$ si elle prend un nombre infini de valeurs réelles possibles à l’intérieur d’un intervalle donné. Prenons la taille d’un élève par exemple.\pause
+
+- Variables discrètes: Contrairement à une variable continue, une variable $\color{violet}{\textbf{discrète}}$ ne peut prendre qu'un nombre fini de valeurs réelles possibles à l'intérieur d'un intervalle donné. Le nombre d'enfants dans un ménage est un exemple.
+
+# Variable qualitative
+
+Une variable qualitative peut être représentée, soit par un diagramme à barres, soit par un diagramme en secteurs.\pause
+
+$\color{red}{\textbf{Exemple:}}$
+
+En 2005, les recettes du budget de l'Etat se présentaient
+de la façon suivante (en milliards) :
+
+```{r, echo=FALSE}
+RF=c(348,163,71,54,161,41)
+namess=c("TVA","IR","IS","TPP","AI","RNF")
+tt=rbind(Source=namess, RF)
+par(mar=c(3.5,2,1,3))
+knitr::kable(tt)
+```
+
+\vspace*{4cm}
+
+---
+```{r}
+RF=c(348,163,71,54,161,41)
+source=c("TVA","IR","IS","TPP","AI","RNF")
+tab1=data.frame(source, RF)
+
+```
+
+
