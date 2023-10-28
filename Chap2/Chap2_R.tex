@@ -403,7 +403,7 @@ barres, soit par un diagramme en secteurs.\pause
 
 \(\color{red}{\textbf{Exemple:}}\)
 
-En 2005, les recettes du budget de l'Etat se présentaient de la façon
+En 2005, les recettes du budget de l'État se présentaient de la façon
 suivante (en milliards) :
 
 \begin{longtable}[]{@{}lllllll@{}}
@@ -414,7 +414,254 @@ RF & 348 & 163 & 71 & 54 & 161 & 41 \\
 \bottomrule
 \end{longtable}
 
+Le graphique à barres est parfois appelé graphique à bandes ou graphique
+à bâtons. Il peut être horizontal ou vertical.
+
 \vspace*{4cm}
+\end{frame}
+
+\begin{frame}[fragile]{Graphique à barres}
+\protect\hypertarget{graphique-uxe0-barres}{}
+\begin{block}{Diagramme à barres vertical}
+\protect\hypertarget{diagramme-uxe0-barres-vertical}{}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{RF}\OtherTok{=}\FunctionTok{c}\NormalTok{(}\DecValTok{348}\NormalTok{,}\DecValTok{163}\NormalTok{,}\DecValTok{71}\NormalTok{,}\DecValTok{54}\NormalTok{,}\DecValTok{161}\NormalTok{,}\DecValTok{41}\NormalTok{)}
+\NormalTok{namess}\OtherTok{=}\FunctionTok{c}\NormalTok{(}\StringTok{"TVA"}\NormalTok{,}\StringTok{"IR"}\NormalTok{,}\StringTok{"IS"}\NormalTok{,}\StringTok{"TPP"}\NormalTok{,}\StringTok{"AI"}\NormalTok{,}\StringTok{"RNF"}\NormalTok{)}
+\FunctionTok{barplot}\NormalTok{(RF, }\AttributeTok{names.arg=}\NormalTok{namess, }\AttributeTok{col=}\StringTok{"blue"}\NormalTok{, }\AttributeTok{ylim =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{350}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{Chap2_R_files/figure-beamer/unnamed-chunk-14-1} \end{center}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Graphique à barres}
+\protect\hypertarget{graphique-uxe0-barres-1}{}
+\begin{block}{Diagramme à barres horizontal}
+\protect\hypertarget{diagramme-uxe0-barres-horizontal}{}
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{barplot}\NormalTok{(RF, }\AttributeTok{names.arg=}\NormalTok{namess, }\AttributeTok{col=}\StringTok{"blue"}\NormalTok{, }\AttributeTok{horiz =}\NormalTok{ T, }\AttributeTok{xlim =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{350}\NormalTok{) )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{Chap2_R_files/figure-beamer/unnamed-chunk-15-1} \end{center}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Graphique à barres}
+\protect\hypertarget{graphique-uxe0-barres-2}{}
+\begin{block}{Diagramme à barres groupées}
+\protect\hypertarget{diagramme-uxe0-barres-groupuxe9es}{}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cyl}\OtherTok{=}\FunctionTok{factor}\NormalTok{(mtcars}\SpecialCharTok{$}\NormalTok{cyl)}
+\NormalTok{am}\OtherTok{=}\FunctionTok{factor}\NormalTok{(mtcars}\SpecialCharTok{$}\NormalTok{am, }\AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Auto"}\NormalTok{, }\StringTok{"Manuel"}\NormalTok{))}
+\NormalTok{tab}\OtherTok{=}\FunctionTok{table}\NormalTok{(am, cyl);}\FunctionTok{barplot}\NormalTok{(tab, }\AttributeTok{col=}\FunctionTok{c}\NormalTok{(}\StringTok{"lightblue"}\NormalTok{,}\StringTok{"blue2"}\NormalTok{))}
+\FunctionTok{legend}\NormalTok{(}\StringTok{"top"}\NormalTok{, }\FunctionTok{c}\NormalTok{(}\StringTok{"Auto"}\NormalTok{,}\StringTok{"Manuel"}\NormalTok{), }\AttributeTok{fill=}\FunctionTok{c}\NormalTok{(}\StringTok{"lightblue"}\NormalTok{,}\StringTok{"blue2"}\NormalTok{), }\AttributeTok{box.lty =} \DecValTok{0}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{Chap2_R_files/figure-beamer/unnamed-chunk-16-1} \end{center}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Graphique à barres}
+\protect\hypertarget{graphique-uxe0-barres-3}{}
+\begin{block}{Diagramme à barres groupées}
+\protect\hypertarget{diagramme-uxe0-barres-groupuxe9es-1}{}
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{barplot}\NormalTok{(tab, }\AttributeTok{col=}\FunctionTok{c}\NormalTok{(}\StringTok{"lightblue"}\NormalTok{,}\StringTok{"blue2"}\NormalTok{), }\AttributeTok{beside=}\NormalTok{T)}
+\FunctionTok{legend}\NormalTok{(}\StringTok{"top"}\NormalTok{, }\FunctionTok{c}\NormalTok{(}\StringTok{"Auto"}\NormalTok{,}\StringTok{"Manuel"}\NormalTok{), }\AttributeTok{fill=}\FunctionTok{c}\NormalTok{(}\StringTok{"lightblue"}\NormalTok{,}\StringTok{"blue2"}\NormalTok{), }\AttributeTok{box.lty =} \DecValTok{0}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{Chap2_R_files/figure-beamer/unnamed-chunk-17-1} \end{center}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Graphique circulaire}
+\protect\hypertarget{graphique-circulaire}{}
+Ce type de graphique est formé d'un cercle divisé en secteurs. Chaque
+secteur représente une catégorie particulière.
+
+\begin{block}{Diagramme simple}
+\protect\hypertarget{diagramme-simple}{}
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{pie}\NormalTok{(RF, namess, }\AttributeTok{col=}\FunctionTok{rainbow}\NormalTok{(}\FunctionTok{length}\NormalTok{(RF)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{Chap2_R_files/figure-beamer/unnamed-chunk-18-1} \end{center}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Graphique circulaire}
+\protect\hypertarget{graphique-circulaire-1}{}
+Ce type de graphique est formé d'un cercle divisé en secteurs. Chaque
+secteur représente une catégorie particulière.
+
+\begin{block}{Diagramme 3D}
+\protect\hypertarget{diagramme-3d}{}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{plotrix}\SpecialCharTok{::}\FunctionTok{pie3D}\NormalTok{(RF, }\AttributeTok{labels=}\NormalTok{namess, }\AttributeTok{explode=}\FloatTok{0.1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{Chap2_R_files/figure-beamer/unnamed-chunk-19-1} \end{center}
+\end{block}
+\end{frame}
+
+\hypertarget{variable-quantitative}{%
+\section{Variable quantitative}\label{variable-quantitative}}
+
+\begin{frame}[fragile]{Variable quatitative discrète}
+\protect\hypertarget{variable-quatitative-discruxe8te}{}
+Une variable quantitative discrète peut être représentée graphiquement
+par un graphique en bâton. Ce graphique s'obtient avec la fonction
+\texttt{barplot()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{barplot}\NormalTok{(}\FunctionTok{table}\NormalTok{(mtcars}\SpecialCharTok{$}\NormalTok{cyl), }\AttributeTok{col=}\StringTok{"blue2"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{Chap2_R_files/figure-beamer/unnamed-chunk-20-1} \end{center}
+\end{frame}
+
+\begin{frame}[fragile]{Variable quatitative continue}
+\protect\hypertarget{variable-quatitative-continue}{}
+Une variable quantitative continue peut être représentée par un
+histogramme. Il est souvent employé pour montrer les caractéristiques
+principales de la distribution des données de façon pratique. Ce type de
+graphique s'obtient sous \texttt{R} \$ l'aide de la fonction
+\texttt{boxplot}. \pause
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{hist}\NormalTok{(mtcars}\SpecialCharTok{$}\NormalTok{mpg, }\AttributeTok{col=}\DecValTok{6}\NormalTok{,}\AttributeTok{probability =}\NormalTok{ T )}
+\FunctionTok{lines}\NormalTok{(}\FunctionTok{density}\NormalTok{(mtcars}\SpecialCharTok{$}\NormalTok{mpg), }\AttributeTok{lwd=}\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{Chap2_R_files/figure-beamer/unnamed-chunk-21-1} \end{center}
+\end{frame}
+
+\begin{frame}[fragile]{Variable quatitative continue}
+\protect\hypertarget{variable-quatitative-continue-1}{}
+On peut aussi résumer une variable statistique quantitative par un
+diagramme appelé boite à moustache (boxplot).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{boxplot}\NormalTok{(mtcars}\SpecialCharTok{$}\NormalTok{mpg, }\AttributeTok{col=}\DecValTok{5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{Chap2_R_files/figure-beamer/unnamed-chunk-22-1} \end{center}
+\end{frame}
+
+\begin{frame}[fragile]{Variable quatitative continue}
+\protect\hypertarget{variable-quatitative-continue-2}{}
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{boxplot}\NormalTok{(mpg }\SpecialCharTok{\textasciitilde{}}\NormalTok{ cyl , }\AttributeTok{data=}\NormalTok{mtcars, }\AttributeTok{col=}\DecValTok{5}\NormalTok{, }\AttributeTok{notch=}\NormalTok{T, }\AttributeTok{horizontal =}\NormalTok{ T)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{Chap2_R_files/figure-beamer/unnamed-chunk-23-1} \end{center}
+\end{frame}
+
+\hypertarget{analyse-statistique}{%
+\section{Analyse statistique}\label{analyse-statistique}}
+
+\begin{frame}[fragile]{Variable qualitative}
+\protect\hypertarget{variable-qualitative-1}{}
+Pour une variable qualitative, on peut déterminer un tableau des
+fréquences (absolues ou relatives).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(}\AttributeTok{t1=}\FunctionTok{table}\NormalTok{(mtcars}\SpecialCharTok{$}\NormalTok{cyl)) }\CommentTok{\# absolues}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+ 4  6  8 
+11  7 14 
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{t1}\SpecialCharTok{/}\FunctionTok{sum}\NormalTok{(t1)             }\CommentTok{\# relatives}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+      4       6       8 
+0.34375 0.21875 0.43750 
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(}\AttributeTok{t2=}\FunctionTok{table}\NormalTok{(mtcars}\SpecialCharTok{$}\NormalTok{cyl, mtcars}\SpecialCharTok{$}\NormalTok{gear )); t2}\SpecialCharTok{/}\FunctionTok{sum}\NormalTok{(t2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+   
+     3  4  5
+  4  1  8  2
+  6  2  4  1
+  8 12  0  2
+\end{verbatim}
+
+\begin{verbatim}
+   
+          3       4       5
+  4 0.03125 0.25000 0.06250
+  6 0.06250 0.12500 0.03125
+  8 0.37500 0.00000 0.06250
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{Variable quantitative}
+\protect\hypertarget{variable-quantitative-1}{}
+Une première analyse statistique pour une variable quantitative est
+l'analyse descriptive.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(mtcars}\SpecialCharTok{$}\NormalTok{mpg)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  10.40   15.43   19.20   20.09   22.80   33.90 
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pastecs}\SpecialCharTok{::}\FunctionTok{stat.desc}\NormalTok{(mtcars}\SpecialCharTok{$}\NormalTok{mpg, }\AttributeTok{norm=}\NormalTok{T, }\AttributeTok{basic=}\NormalTok{F )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+      median         mean      SE.mean CI.mean.0.95          var      std.dev 
+  19.2000000   20.0906250    1.0654240    2.1729465   36.3241028    6.0269481 
+    coef.var     skewness     skew.2SE     kurtosis     kurt.2SE   normtest.W 
+   0.2999881    0.6106550    0.7366922   -0.3727660   -0.2302812    0.9475647 
+  normtest.p 
+   0.1228814 
+\end{verbatim}
+
+\vspace*{2cm}
 \end{frame}
 
 \end{document}

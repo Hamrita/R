@@ -197,7 +197,7 @@ Une variable qualitative peut être représentée, soit par un diagramme à barr
 
 $\color{red}{\textbf{Exemple:}}$
 
-En 2005, les recettes du budget de l'Etat se présentaient
+En 2005, les recettes du budget de l’État se présentaient
 de la façon suivante (en milliards) :
 
 ```{r, echo=FALSE}
@@ -208,14 +208,118 @@ par(mar=c(3.5,2,1,3))
 knitr::kable(tt)
 ```
 
+Le graphique à barres est parfois appelé graphique à bandes ou graphique à bâtons. Il peut être horizontal ou vertical.
+
 \vspace*{4cm}
 
----
-```{r}
-RF=c(348,163,71,54,161,41)
-source=c("TVA","IR","IS","TPP","AI","RNF")
-tab1=data.frame(source, RF)
+## Graphique à barres
 
+### Diagramme à barres vertical
+
+```{r, fig.align='center', out.width="80%"}
+RF=c(348,163,71,54,161,41)
+namess=c("TVA","IR","IS","TPP","AI","RNF")
+barplot(RF, names.arg=namess, col="blue", ylim = c(0,350))
 ```
 
+## Graphique à barres
 
+### Diagramme à barres horizontal
+
+
+```{r, fig.align='center', out.width="80%"}
+barplot(RF, names.arg=namess, col="blue", horiz = T, xlim = c(0,350) )
+```
+## Graphique à barres
+
+### Diagramme à barres groupées
+
+```{r,fig.align='center', out.width="80%"}
+cyl=factor(mtcars$cyl)
+am=factor(mtcars$am, labels = c("Auto", "Manuel"))
+tab=table(am, cyl);barplot(tab, col=c("lightblue","blue2"))
+legend("top", c("Auto","Manuel"), fill=c("lightblue","blue2"), box.lty = 0)
+```
+
+## Graphique à barres
+
+### Diagramme à barres groupées
+
+```{r,fig.align='center', out.width="80%"}
+barplot(tab, col=c("lightblue","blue2"), beside=T)
+legend("top", c("Auto","Manuel"), fill=c("lightblue","blue2"), box.lty = 0)
+```
+## Graphique circulaire
+
+Ce type de graphique est formé d'un cercle divisé en secteurs. Chaque secteur représente une catégorie particulière.
+
+### Diagramme simple
+
+```{r,fig.align='center', out.width="80%"}
+pie(RF, namess, col=rainbow(length(RF)))
+```
+## Graphique circulaire
+
+Ce type de graphique est formé d'un cercle divisé en secteurs. Chaque secteur représente une catégorie particulière.
+
+### Diagramme 3D
+
+```{r, fig.align='center', out.width="80%"}
+plotrix::pie3D(RF, labels=namess, explode=0.1)
+```
+# Variable quantitative
+
+## Variable quatitative discrète
+
+Une variable quantitative discrète peut être représentée graphiquement par un graphique en bâton. Ce graphique s'obtient avec la fonction `barplot()`.
+
+
+```{r,fig.align='center', out.width="80%"}
+barplot(table(mtcars$cyl), col="blue2")
+```
+
+## Variable quatitative continue
+
+Une variable quantitative continue peut être représentée par un histogramme. Il est souvent employé pour montrer les caractéristiques principales de la distribution des données de façon pratique. Ce type de graphique s'obtient sous `R` $ l'aide de la fonction `boxplot`.
+\pause
+
+```{r, fig.align='center', out.width="80%"}
+hist(mtcars$mpg, col=6,probability = T )
+lines(density(mtcars$mpg), lwd=3)
+```
+## Variable quatitative continue
+
+On peut aussi résumer une variable statistique quantitative par un diagramme appelé boite à moustache (boxplot).
+
+
+```{r, fig.align='center', out.width="80%"}
+boxplot(mtcars$mpg, col=5)
+```
+
+## Variable quatitative continue
+
+
+```{r, fig.align='center', out.width="80%"}
+boxplot(mpg ~ cyl , data=mtcars, col=5, notch=T, horizontal = T)
+```
+
+# Analyse statistique
+
+## Variable qualitative
+
+Pour une variable qualitative, on peut déterminer un tableau des fréquences (absolues ou relatives).
+
+```{r}
+(t1=table(mtcars$cyl)) # absolues
+t1/sum(t1)             # relatives
+(t2=table(mtcars$cyl, mtcars$gear )); t2/sum(t2)
+```
+## Variable quantitative
+
+Une première analyse statistique pour une variable quantitative est l'analyse descriptive.
+
+```{r}
+summary(mtcars$mpg)
+pastecs::stat.desc(mtcars$mpg, norm=T, basic=F )
+```
+\vspace*{2cm}
