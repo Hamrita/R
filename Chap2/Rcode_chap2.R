@@ -93,3 +93,4 @@ t1/sum(t1)             # relatives
 summary(mtcars$mpg)
 pastecs::stat.desc(mtcars$mpg, norm=T, basic=F )
 
+
